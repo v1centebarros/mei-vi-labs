@@ -13,7 +13,6 @@
 # Import all VTK modules
 from vtkmodules.all import *
 
-
 # Import only needed modules
 # import vtkmodules.vtkInteractionStyle
 # import vtkmodules.vtkRenderingOpenGL2
@@ -27,20 +26,23 @@ from vtkmodules.all import *
 # )
 
 def main():
+
     # We Create an instance of vtkConeSource and set some of its
     # properties. The instance of vtkConeSource "cone" is part of a
     # visualization pipeline (it is a source process object); it produces data
     # (output type is vtkPolyData) which other filters may process.
 
     coneSource = vtkConeSource()
-    coneSource.SetResolution(16)
+    coneSource.SetHeight(2)
+    coneSource.SetRadius(1)
+    coneSource.SetResolution(20)
 
     # We create an instance of vtkPolyDataMapper to map the polygonal data
-    # winto graphics primitives. We connect the output of the cone source
+    # into graphics primitives. We connect the output of the cone source
     # to the input of this mapper.
 
     coneMapper = vtkPolyDataMapper()
-    coneMapper.SetInputConnection(coneSource.GetOutputPort())
+    coneMapper.SetInputConnection( coneSource.GetOutputPort() )
 
     # We create an actor to represent the cone. The actor orchestrates rendering
     # of the mapper's graphics primitives. An actor also refers to properties
@@ -50,11 +52,9 @@ def main():
 
     coneActor = vtkActor()
     coneActor.SetMapper(coneMapper)
-    #resize the cone with height 2 and radius 1
-    coneActor.SetScale(2, 1, 1)
 
     # Create the Renderer and assign actors to it. A renderer is like a
-    # viewport. It is part or all of a window on the screen, and it is
+    # viewport. It is part or all of a window on the screen and it is
     # responsible for drawing the actors it has.  We also set the background
     # color here.
     ren = vtkRenderer()
@@ -66,13 +66,15 @@ def main():
     # set the size to be 300 pixels by 300.
 
     renWin = vtkRenderWindow()
-    renWin.SetSize(300, 300)
     renWin.AddRenderer(ren)
 
     renWin.SetWindowName('Cone')
+    renWin.SetSize(300,300)
+
+
 
     # Now we loop over 360 degrees and render the cone each time.
-    for _ in range(0, 360):
+    for i in range(0,360):
         # render the image
         renWin.Render()
         # rotate the active camera by one degree
