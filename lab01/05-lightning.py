@@ -47,7 +47,7 @@ def main():
     cylinder_mapper.SetInputConnection(cylinder.GetOutputPort())
 
     cylinder_actor = vtkActor()
-    cylinder_actor.SetMapper(cylinder_mapper)
+    cylinder_actor.SetMapper(sphere_mapper)
 
 
     # Create the Renderer and assign actors to it. A renderer is like a
