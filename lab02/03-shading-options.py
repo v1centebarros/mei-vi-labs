@@ -6,12 +6,19 @@ from vtkmodules.all import (
 def main():
     # sphere source
     sphereSource = vtkSphereSource()
-    sphereSource.SetPhiResolution(12)
-    sphereSource.SetThetaResolution(12)
+    sphereSource.SetPhiResolution(10)
+    sphereSource.SetThetaResolution(10)
 
     # Mapper
     sphereMapper = vtkPolyDataMapper()
     sphereMapper.SetInputConnection(sphereSource.GetOutputPort())
+
+    sphereMapper1 = vtkPolyDataMapper()
+    sphereMapper1.SetInputConnection(sphereSource.GetOutputPort())
+
+    sphereMapper2 = vtkPolyDataMapper()
+    sphereMapper2.SetInputConnection(sphereSource.GetOutputPort())
+
 
     # Actor
     sphereActor1 = vtkActor()
@@ -19,11 +26,11 @@ def main():
     sphereActor1.GetProperty().SetInterpolationToFlat()
 
     sphereActor2 = vtkActor()
-    sphereActor2.SetMapper(sphereMapper)
+    sphereActor2.SetMapper(sphereMapper1)
     sphereActor2.GetProperty().SetInterpolationToGouraud()
 
     sphereActor3 = vtkActor()
-    sphereActor3.SetMapper(sphereMapper)
+    sphereActor3.SetMapper(sphereMapper2)
     sphereActor3.GetProperty().SetInterpolationToPhong()
 
     ren1 = vtkRenderer()
