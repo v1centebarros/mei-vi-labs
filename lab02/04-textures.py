@@ -12,9 +12,9 @@ def main():
 
     # Set the origin and points to define the plane
     # UNCOMMENT THE FOLLOWING LINES TO SEE THE DIFFERENCE
-    # planeSource.SetOrigin(0, 0, 0)
-    # planeSource.SetPoint1(1, 0, 0)
-    # planeSource.SetPoint2(0, 1, 0)
+    planeSource.SetOrigin(0, 0, 0)
+    planeSource.SetPoint1(2, 0, 3)
+    planeSource.SetPoint2(0, 3, 2)
 
     planeMapper = vtkPolyDataMapper()
     planeMapper.SetInputConnection(planeSource.GetOutputPort())
