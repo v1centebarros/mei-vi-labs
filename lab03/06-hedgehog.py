@@ -58,7 +58,7 @@ def main():
     iren.SetRenderWindow(renWin)
 
     ren1.AddActor(UgridActor)
-    ren1.SetBackground(1.0, 0.55, 0.41)
+    ren1.SetBackground(0, 0, 0)
 
     # render
     renWin.Render()
